@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
 public class VersionCheckRunner implements ApplicationRunner {
+
+    private static final String DEFAULT_SYS_VERSION = "v20260501";
 
     @Value("${sysconfig.sysVersion}")
     private String sysVersion;
@@ -21,7 +22,7 @@ public class VersionCheckRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        String sysVersionDb = configService.selectConfigByKey("sys.version", "v20250805");
+        String sysVersionDb = configService.selectConfigByKey("sys.version", DEFAULT_SYS_VERSION);
         log.info("version number of mysql data records:{}", sysVersionDb);
         log.info("version number of source code:{}", sysVersion);
         if (!sysVersionDb.equals(sysVersion)) {

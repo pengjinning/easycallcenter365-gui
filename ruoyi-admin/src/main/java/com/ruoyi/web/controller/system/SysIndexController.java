@@ -9,14 +9,11 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.ruoyi.cc.domain.CcExtNum;
 import com.ruoyi.cc.domain.CcGateways;
-import com.ruoyi.cc.domain.SysDivisionData;
 import com.ruoyi.cc.service.ICcExtNumService;
 import com.ruoyi.cc.service.ICcGatewaysService;
 import com.ruoyi.cc.service.ICcParamsService;
-import com.ruoyi.cc.service.ISysDivisionDataService;
 import com.ruoyi.common.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +39,8 @@ import com.ruoyi.system.service.ISysMenuService;
 @Controller
 public class SysIndexController extends BaseController
 {
+    private static final String DEFAULT_SYS_VERSION = "v20260501";
+
     @Autowired
     private ISysMenuService menuService;
 
@@ -82,7 +81,7 @@ public class SysIndexController extends BaseController
         mmap.put("tagsView", tagsView);
         mmap.put("mainClass", contentMainClass(footer, tagsView));
         mmap.put("copyrightYear", RuoYiConfig.getCopyrightYear());
-        mmap.put("sysVersion", configService.selectConfigByKey("sys.version", "v20250805"));
+        mmap.put("sysVersion", configService.selectConfigByKey("sys.version", DEFAULT_SYS_VERSION));
         if (user.getLoginName().equals("admin")) {
             mmap.put("demoEnabled", RuoYiConfig.isDemoEnabled());
         } else {
