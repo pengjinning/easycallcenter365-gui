@@ -10,13 +10,11 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.ruoyi.cc.service.ICcParamsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.ruoyi.cc.mapper.CcExtNumMapper;
 import com.ruoyi.cc.domain.CcExtNum;
 import com.ruoyi.cc.service.ICcExtNumService;
 import com.ruoyi.common.core.text.Convert;
-import org.springframework.util.CollectionUtils;
 
 /**
  * 【请填写功能名称】Service业务层处理
